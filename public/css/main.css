@@ -26,6 +26,11 @@ NAVIGATION
 nav {
 
 }
+
+.navbar-inverse .navbar-brand {
+  color:#F0563D;
+  font-family:"Kaushan Script","Helvetica Neue",Helvetica,Arial,cursive;
+}
 /*******************************************
 CONTAINER
 *******************************************/
