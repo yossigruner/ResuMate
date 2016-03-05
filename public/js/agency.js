@@ -5,6 +5,7 @@
  */
 
 // jQuery for page scrolling feature - requires jQuery Easing plugin
+/*
 $(function() {
     $('a.page-scroll').bind('click', function(event) {
         var $anchor = $(this);
@@ -14,7 +15,8 @@ $(function() {
         event.preventDefault();
     });
 });
-
+*/
+/*
 // Highlight the top nav as scrolling occurs
 $('body').scrollspy({
     target: '.navbar-fixed-top'
@@ -24,3 +26,4 @@ $('body').scrollspy({
 $('.navbar-collapse ul li a').click(function() {
     $('.navbar-toggle:visible').click();
 });
+*/
