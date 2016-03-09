@@ -19,9 +19,18 @@ require('./config/passport')(passport);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
+
+var hbs = require('hbs')
+
+hbs.registerHelper('section', function(name, options) {
+  if(!this._sections) this._sections = {};
+  this._sections[name] = options.fn(this);
+  return null;
+});
+
 app.set('view engine', 'hbs');
 
-// uncomment after placing your favicon in /public
+// uncomment after placing favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());

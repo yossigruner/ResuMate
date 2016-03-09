@@ -27,5 +27,9 @@ module.exports = function(app, passport) {
 
   });
 
+  app.get('/wizard', function(req, res, next) {
+    res.render('wizard');
+  });
+
   var auth = require('../routes/auth')(app, passport);
 };
