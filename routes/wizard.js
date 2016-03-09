@@ -3,7 +3,7 @@ var middlewares = require('../utilities/middlewares')
 
 module.exports = function(app, passport) {
   app.get('/wizard', middlewares.isLoggedIn, function(req, res) {
-    res.render('wizard');
+    res.render('wizard', {user: req.user});
   });
 
   app.post('/wizard', middlewares.isLoggedIn, function(req, res) {
