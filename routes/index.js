@@ -1,12 +1,15 @@
 var User = require('../models/user');
+var middlewares = require('../utilities/middlewares')
 
 module.exports = function(app, passport) {
   app.get('/', function(req, res) {
     if (req.isAuthenticated()) {
-      console.log(req.user.id);
-      res.render('resume', {
-        user: req.user
-      });
+      var user = req.user;
+      if (user.firstName == null || user.firstName == '') {
+        res.render('wizard', { user: user })
+      } else {
+        res.render('resume', { user: user });
+      }
     } else {
       res.render('landing', { layout: null });
     }
@@ -27,9 +30,7 @@ module.exports = function(app, passport) {
 
   });
 
-  app.get('/wizard', function(req, res, next) {
-    res.render('wizard');
-  });
+  require('../routes/auth')(app, passport);
+  require('../routes/wizard')(app, passport);
 
-  var auth = require('../routes/auth')(app, passport);
 };

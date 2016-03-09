@@ -16,20 +16,28 @@
             <a href="#step-3" type="button" class="btn btn-default btn-circle" disabled="disabled">3</a>
             <p>Step 3</p>
         </div>
+        <div class="stepwizard-step">
+            <a href="#step-4" type="button" class="btn btn-default btn-circle" disabled="disabled">4</a>
+            <p>Step 4</p>
+        </div>
     </div>
 </div>
-<form role="form">
+<form role="form" method="post">
     <div class="row setup-content" id="step-1">
         <div class="col-xs-12">
             <div class="col-md-12">
                 <h3> Step 1</h3>
                 <div class="form-group">
                     <label class="control-label">First Name</label>
-                    <input  maxlength="100" type="text" required="required" class="form-control" placeholder="Enter First Name"  />
+                    <input id="first-name" name="first-name" maxlength="100" type="text" required="required" class="form-control" placeholder="Enter First Name"  />
                 </div>
                 <div class="form-group">
                     <label class="control-label">Last Name</label>
-                    <input maxlength="100" type="text" required="required" class="form-control" placeholder="Enter Last Name" />
+                    <input id="last-name" name="last-name" maxlength="100" type="text" required="required" class="form-control" placeholder="Enter Last Name" />
+                </div>
+                <div class="form-group">
+                    <label class="control-label">About Me</label>
+                    <textarea rows="5" name="about-me" maxlength="300" type="text" required="required" class="form-control" placeholder="Tell us and the world about yourself..."></textarea>
                 </div>
                 <button class="btn btn-primary nextBtn btn-lg pull-right" type="button" >Next</button>
             </div>
@@ -40,12 +48,125 @@
             <div class="col-md-12">
                 <h3> Step 2</h3>
                 <div class="form-group">
-                    <label class="control-label">Company Name</label>
-                    <input maxlength="200" type="text" required="required" class="form-control" placeholder="Enter Company Name" />
-                </div>
-                <div class="form-group">
-                    <label class="control-label">Company Address</label>
-                    <input maxlength="200" type="text" required="required" class="form-control" placeholder="Enter Company Address"  />
+                    <label class="control-label">Educational Milestones</label>
+                    <div class="row">
+                      <div class="col-xs-3">
+                        <select name="milestone-year" class="form-control">
+                          <option>2016</option>
+                          <option>2015</option>
+                          <option>2014</option>
+                          <option>2013</option>
+                          <option>2012</option>
+                          <option>2011</option>
+                        </select>
+                      </div>
+                      <div class="col-xs-3">
+                        <input id="milestone-name" name="milestone-name" maxlength="100" type="text" class="form-control" placeholder="Name" />
+                      </div>
+                      <div class="col-xs-6">
+                        <input id="milestone-description" name="milestone-description" maxlength="100" type="text" class="form-control" placeholder="Description" />
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-xs-3">
+                        <select name="milestone-year"class="form-control">
+                          <option>2016</option>
+                          <option>2015</option>
+                          <option>2014</option>
+                          <option>2013</option>
+                          <option>2012</option>
+                          <option>2011</option>
+                        </select>
+                      </div>
+                      <div class="col-xs-3">
+                        <input id="milestone-name" name="milestone-name" maxlength="100" type="text" class="form-control" placeholder="Name" />
+                      </div>
+                      <div class="col-xs-6">
+                        <input id="milestone-description" name="milestone-description" maxlength="100" type="text" class="form-control" placeholder="Description" />
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-xs-3">
+                        <select name="milestone-year" class="form-control" >
+                          <option>2016</option>
+                          <option>2015</option>
+                          <option>2014</option>
+                          <option>2013</option>
+                          <option>2012</option>
+                          <option>2011</option>
+                        </select>
+                      </div>
+                      <div class="col-xs-3">
+                        <input id="milestone-name" name="milestone-name" maxlength="100" type="text" class="form-control" placeholder="Name" />
+                      </div>
+                      <div class="col-xs-6">
+                        <input id="milestone-description" name="milestone-description" maxlength="100" type="text" class="form-control" placeholder="Description" />
+                      </div>
+                    </div>
+                    <label class="control-label">Experience</label>
+                    <div class="row">
+                      <div class="col-xs-3">
+                        <select name="experience-year" class="form-control" name="">
+                          <option>2016</option>
+                          <option>2015</option>
+                          <option>2014</option>
+                          <option>2013</option>
+                          <option>2012</option>
+                          <option>2011</option>
+                        </select>
+                      </div>
+                      <div class="col-xs-3">
+                        <input id="experience-company" name="experience-company" maxlength="100" type="text" class="form-control" placeholder="Company" />
+                      </div>
+                      <div class="col-xs-3">
+                        <input id="experience-title" name="experience-title" maxlength="100" type="text" class="form-control" placeholder="Title" />
+                      </div>
+                      <div class="col-xs-3">
+                        <input id="experience-description" name="experience-description" maxlength="100" type="text" class="form-control" placeholder="Description" />
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-xs-3">
+                        <select name="experience-year" class="form-control" name="">
+                          <option>2016</option>
+                          <option>2015</option>
+                          <option>2014</option>
+                          <option>2013</option>
+                          <option>2012</option>
+                          <option>2011</option>
+                        </select>
+                      </div>
+                      <div class="col-xs-3">
+                        <input id="experience-company" name="experience-company" maxlength="100" type="text" class="form-control" placeholder="Company" />
+                      </div>
+                      <div class="col-xs-3">
+                        <input id="experience-title" name="experience-title" maxlength="100" type="text" class="form-control" placeholder="Title" />
+                      </div>
+                      <div class="col-xs-3">
+                        <input id="experience-description" name="experience-description" maxlength="100" type="text" class="form-control" placeholder="Description" />
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-xs-3">
+                        <select name="experience-year" class="form-control" name="">
+                          <option>2016</option>
+                          <option>2015</option>
+                          <option>2014</option>
+                          <option>2013</option>
+                          <option>2012</option>
+                          <option>2011</option>
+                        </select>
+                      </div>
+                      <div class="col-xs-3">
+                        <input id="experience-company" name="experience-company" maxlength="100" type="text" class="form-control" placeholder="Company" />
+                      </div>
+                      <div class="col-xs-3">
+                        <input id="experience-title" name="experience-title" maxlength="100" type="text" class="form-control" placeholder="Title" />
+                      </div>
+                      <div class="col-xs-3">
+                        <input id="experience-description" name="experience-description" maxlength="100" type="text" class="form-control" placeholder="Description" />
+                      </div>
+                    </div>
                 </div>
                 <button class="btn btn-default prevBtn btn-lg pull-left" type="button" >Prev</button>
                 <button class="btn btn-primary nextBtn btn-lg pull-right" type="button" >Next</button>
@@ -56,6 +177,39 @@
         <div class="col-xs-12">
             <div class="col-md-12">
                 <h3> Step 3</h3>
+                <div class="form-group">
+                    <label class="control-label">Hobbies</label>
+                    <input id="hobbies" name="hobbies" maxlength="200" type="text" required="required" class="form-control" placeholder="Hobbies seperated by commas"  />
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Languages</label>
+                    <input id="languages" name="languages" maxlength="200" type="text" required="required" class="form-control" placeholder="Languages seperated by commas"  />
+                </div>
+                <button class="btn btn-default prevBtn btn-lg pull-left" type="button" >Prev</button>
+                <button class="btn btn-primary nextBtn btn-lg pull-right" type="button" >Next</button>
+            </div>
+        </div>
+    </div>
+    <div class="row setup-content" id="step-4">
+        <div class="col-xs-12">
+            <div class="col-md-12">
+                <h3> Step 4</h3>
+                <div class="form-group">
+                    <label class="control-label">Phone</label>
+                    <input id="phone" name="phone" maxlength="200" type="text" class="form-control" placeholder="Phone"  />
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Twitter</label>
+                    <input id="twitter" name="twitter" maxlength="200" type="text" class="form-control" placeholder="Twitter"  />
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Facebook</label>
+                    <input id="facebook" name="facebook" maxlength="200" type="text" class="form-control" placeholder="Facebook"  />
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Skype</label>
+                    <input id="skype" name="skype" maxlength="200" type="text" class="form-control" placeholder="Skype"  />
+                </div>
                 <button class="btn btn-default prevBtn btn-lg pull-left" type="button" >Prev</button>
                 <button class="btn btn-success btn-lg pull-right" type="submit">Finish!</button>
             </div>

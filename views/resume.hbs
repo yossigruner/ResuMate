@@ -17,87 +17,75 @@
       <!-- ABOUT ME -->
       <div class="box">
         <h2>About Me</h2>
-        <p>I'm a senior year student in Computer Science (B.Sc) majoring in Business Administration. Looking for great opportunities in several positions in the industry. I aced in all algorithmic courses in my studies as I'm paying significant interest in solving acute puzzles. I can perform as full stack software developer as well as a research engineer. For further information please don't hesitate to contact for my full CV and my progress in college.</p>
+        <p>{{user.aboutMe}}</p>
       </div>
       <!-- EDUCATION -->
       <div class="box">
         <h2>Educational milestones</h2>
         <ul id="education" class="clearfix">
+          {{#each user.milestones}}
           <li>
             <div class="year pull-left">2015</div>
             <div class="description pull-right">
-              <h3>iOS App - Breadcrumbs</h3>
-              <p><a href="#">Breadcrumbs</a> is an iOS app which let people leave special notes for others attached to a specific locations.</p>
+              <h3>{{this.name}}</h3>
+              <p>{{this.description}}</p>
             </div>
           </li>
-          <li>
-            <div class="year pull-left">2014</div>
-            <div class="description pull-right">
-              <h3>Web Application - Gymny</h3>
-              <p><a href="#">Gymny</a> is a web application for gym management built with ASP.NET MVC 5.</p>
-            </div>
-          </li>
-          <li>
-            <div class="year pull-left">2013</div>
-            <div class="description pull-right">
-              <h3>Java application - MMU</h3>
-              <p><a href="#">MMU</a> is a Java GUI applciation that simulates an operating system Memory Management unit. I've also used SWT for gui and GSON for Json parsing.</p>
-            </div>
-          </li>
+          {{/each}}
         </ul>
       </div>
       <!-- EXPERIENCES -->
       <div class="box">
-        <h2>Experiences</h2>
+        <h2>Experience</h2>
+        {{#each user.experience}}
         <div class="job clearfix">
           <div class="col-xs-3">
-            <div class="where">Google</div>
-            <div class="year">2013 - 2014</div>
+            <div class="where">{{this.company}}</div>
+            <div class="year">{{this.year}}</div>
           </div>
           <div class="col-xs-9">
-            <div class="profession">Front-end developer / Intern</div>
-            <div class="description">I worked with the team that invented google serach engine. I've developed the doodle image picker and a fewer treats. oth</div>
+            <div class="profession">{{this.title}}</div>
+            <div class="description">{{this.description}}</div>
           </div>
         </div>
-        <div class="job clearfix">
-          <div class="col-xs-3">
-            <div class="where">Freelancer</div>
-            <div class="year">2012</div>
-          </div>
-          <div class="col-xs-9">
-            <div class="profession">PC Technician</div>
-            <div class="description">I've fixed a lot of computers and taught adults how to play with their PC.</div>
-          </div>
-        </div>
+        {{/each}}
       </div>
     </div>
     <div class="col-xs-12 col-sm-5">
       <!-- CONTACT -->
       <div class="box clearfix">
         <h2>Contact</h2>
+        {{#if user.phone}}
         <div class="contact-item">
           <div class="icon pull-left text-center"><span class="fa fa-phone fa-fw"></span></div>
-          <div class="title only pull-right">500 345 242</div>
+          <div class="title only pull-right">{{user.phone}}</div>
         </div>
+        {{/if}}
         <div class="contact-item">
           <div class="icon pull-left text-center"><span class="fa fa-envelope fa-fw"></span></div>
-          <div class="title only pull-right">adi@colman.ac.il</div>
+          <div class="title only pull-right">{{user.local.email}}</div>
         </div>
+        {{#if user.twitter}}
         <div class="contact-item">
           <div class="icon pull-left text-center"><span class="fa fa-twitter fa-fw"></span></div>
           <div class="title pull-right">Twitter</div>
-          <div class="description pull-right">https://twitter.com/WordPress</div>
+          <div class="description pull-right">{{user.twitter}}</div>
         </div>
+        {{/if}}
+        {{#if user.facebook}}
         <div class="contact-item">
           <div class="icon pull-left text-center"><span class="fa fa-facebook fa-fw"></span></div>
           <div class="title pull-right">Facebook</div>
-          <div class="description pull-right">https://www.facebook.com/facebook</div>
+          <div class="description pull-right">{{user.facebook}}</div>
         </div>
+        {{/if}}
+        {{#if user.skype}}
         <div class="contact-item">
           <div class="icon pull-left text-center"><span class="fa fa-skype fa-fw"></span></div>
           <div class="title pull-right">Skype</div>
-          <div class="description pull-right">adi.bz</div>
+          <div class="description pull-right">{{user.skype}}</div>
         </div>
+        {{/if}}
       </div>
       <!-- SKILLS -->
       <div class="box">
@@ -120,16 +108,17 @@
       <div class="box">
         <h2>Languages</h2>
         <div id="language-skills">
-          <div class="skill">Hebrew <div class="icons pull-right"><div style="width: 80%;" class="icons-red"></div></div></div>
-          <div class="skill">English <div class="icons pull-right"><div style="width: 60%;" class="icons-red"></div></div></div>
+          {{#each user.languages}}
+          <div class="skill">{{this}} <div class="icons pull-right"><div style="width: 100%;" class="icons-red"></div></div></div>
+          {{/each}}
         </div>
       </div>
       <!-- HOBBIES -->
       <div class="box">
         <h2>Hobbies</h2>
-        <div class="hobby">Photography</div>
-        <div class="hobby">Fitness</div>
-        <div class="hobby">Programming</div>
+        {{#each user.hobbies}}
+        <div class="hobby">{{this}}</div>
+        {{/each}}
       </div>
     </div>
   </div>

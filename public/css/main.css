@@ -20,6 +20,21 @@ body{
   padding-top: 70px;
 }
 
+.btn-primary {
+  background-color: #F0563D;
+  border-color: #F0563D;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary.active,
+.open .dropdown-toggle.btn-xl {
+    color: #fff;
+    background-color: #EC7263;
+    border-color: #EC7263
+}
+
 /*******************************************
 NAVIGATION
 *******************************************/
