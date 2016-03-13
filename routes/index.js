@@ -6,7 +6,7 @@ module.exports = function(app, passport) {
     if (req.isAuthenticated()) {
       var user = req.user;
       if (user.firstName == null || user.firstName == '') {
-        res.render('wizard', { user: user })
+        res.redirect('/wizard');
       } else {
         res.render('resume', { user: user });
       }
