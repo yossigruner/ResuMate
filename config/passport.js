@@ -33,6 +33,7 @@ module.exports = function(passport) {
 
           newUser.firstName = req.body['first-name'];
           newUser.lastName = req.body['last-name'];
+          newUser.role = 'Student';
           newUser.local.email = email;
           newUser.local.password = newUser.generateHash(password);
 

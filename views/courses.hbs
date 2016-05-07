@@ -1,0 +1,13 @@
+<div class="container">
+  <h1>My Courses</h1>
+  <br>
+  <div class="row">
+    <div class="col-xs-12 col-sm-6">
+      <div class="list-group">
+        {{#each courses}}
+          <a href="/courses/{{id}}" class="list-group-item">{{name}}</a>
+        {{/each}}
+      </div>
+    </div>
+  </div>
+</div>

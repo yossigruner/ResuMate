@@ -15,6 +15,8 @@ var app = express();
 
 mongoose.connect(configDB.url);
 
+// configDB.drop(function() { configDB.seed(); });
+
 require('./config/passport')(passport);
 
 // view engine setup
@@ -26,6 +28,13 @@ hbs.registerHelper('section', function(name, options) {
   if(!this._sections) this._sections = {};
   this._sections[name] = options.fn(this);
   return null;
+});
+
+hbs.registerHelper('if_eq', function(a, b, opts) {
+    if(a == b) // Or === depending on your needs
+        return opts.fn(this);
+    else
+        return opts.inverse(this);
 });
 
 app.set('view engine', 'hbs');

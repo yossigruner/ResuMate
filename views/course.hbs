@@ -1,0 +1,64 @@
+<div class="container">
+  <h1>{{course.name}}</h1>
+  <br>
+  <form method="post">
+    <div class="row">
+      <div class="col-xs-12 col-sm-6">
+        <div class="form-group">
+          <label for="tags">Course skills: </label>
+          <br>
+          <select class="form-control" multiple id="tags" name="tags">
+            {{#each course.skills}}
+              <option selected="" value="{{this}}">{{this}}</option>
+            {{/each}}
+          </select>
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-xs-12 col-sm-6">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>
+                Name
+              </th>
+              <th>
+                Completed
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each students}}
+            <tr>
+              <td>
+                <a href="/resume/{{id}}">{{lastName}} {{firstName}}</a>
+              </td>
+              <td>
+                <input id="student-{{id}}" name="student-{{id}}" type="checkbox"></input>
+              </td>
+            </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div>
+      <input type="submit" class="btn btn-info" value="Update"></input>
+    </div>
+  </form>
+  <br>
+  <a href="/courses">Back to my courses</a>
+</div>
+
+{{#section 'head'}}
+  <link href="/css/bootstrap-tagsinput.css" rel="stylesheet">
+  <link href="/css/bootstrap-tagsinput-typeahead.css" rel="stylesheet">
+{{/section}}
+
+{{#section 'scripts'}}
+  <script src="/js/typeahead.bundle.min.js"></script>
+  <script src="/js/bootstrap-tagsinput.min.js"></script>
+  <script src="/js/course.js"></script>
+{{/section}}
