@@ -38,11 +38,11 @@
               <li><a href="/resume/{{user.id}}">Public Link</a></li>
               <li><a href="/wizard">Edit Your Profile</a></li>
             {{/if_eq}}
-            {{#if_eq user.role "Admin"}}
-              <li><a href="/courses">Courses</a></li>
-            {{/if_eq}}
             {{#if_eq user.role "Lecturer"}}
               <li><a href="/courses">Courses</a></li>
+            {{/if_eq}}
+            {{#if_eq user.role "Admin"}}
+              <li><a href="/admin">Admin</a></li>
             {{/if_eq}}
           </ul>
           <ul class="nav navbar-nav navbar-right">

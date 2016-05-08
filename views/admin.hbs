@@ -1,3 +1,40 @@
 <div class="container">
-  <h1>Welcome to admin!</h1>
+  <h1>User List</h1>
+  <div class="table-responsive">
+      <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Name</th>
+              <th>Role</th>
+           </tr>
+          </thead>
+
+          <tbody>
+            {{#each users}}
+              <tr>
+              <td>{{id}}</td>
+              <td><div class="center-block">{{firstName}} {{lastName}}</div></td>
+              <td>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                          <span data-bind="label">{{role}}</span>&nbsp;<span class="caret"></span>
+                        </button>
+                        <ul class="target dropdown-menu" role="menu">
+                          <li id="{{id}}-Student"><a href="#">Student</a></li>
+                          <li id="{{id}}-Lecturer"><a href="#">Lecturer</a></li>
+                          <li id="{{id}}-Admin"><a href="#">Admin</a></li>
+                        </ul>
+                    </div>
+
+              </td>
+              </tr>
+              {{/each}}
+              </tbody>
+      </table>
+  </div>
+
 </div>
+{{#section 'scripts'}}
+  <script src="/js/admin.js"></script>
+{{/section}}
