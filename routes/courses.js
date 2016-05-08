@@ -4,7 +4,7 @@ var middlewares = require('../utilities/middlewares');
 
 module.exports = function (app, passport){
   app.get('/courses', middlewares.isLecturer, function(req, res) {
-    Course.find(function(err, courses) {
+    Course.find().sort('name').exec(function(err, courses) {
       if (err) {
         console.error(err);
         return res.sendStatus(500);
