@@ -7,7 +7,7 @@
           <img src="/img/avatar.jpg" alt="avatar">
         </div>
         <div id="text-header">
-          <h1>Hello,<br> my name is <span>{{user.firstName}}</span> and this is my resume</h1>
+          <h1>Hello,<br> my name is <span>{{resume.firstName}}</span> and this is my resume</h1>
         </div>
       </div>
     </div>
@@ -17,13 +17,13 @@
       <!-- ABOUT ME -->
       <div class="box">
         <h2>About Me</h2>
-        <p>{{user.aboutMe}}</p>
+        <p>{{resume.aboutMe}}</p>
       </div>
       <!-- EDUCATION -->
       <div class="box">
         <h2>Educational milestones</h2>
         <ul id="education" class="clearfix">
-          {{#each user.milestones}}
+          {{#each resume.milestones}}
           <li>
             <div class="year pull-left">2015</div>
             <div class="description pull-right">
@@ -37,7 +37,7 @@
       <!-- EXPERIENCES -->
       <div class="box">
         <h2>Experience</h2>
-        {{#each user.experience}}
+        {{#each resume.experience}}
         <div class="job clearfix">
           <div class="col-xs-3">
             <div class="where">{{this.company}}</div>
@@ -50,40 +50,58 @@
         </div>
         {{/each}}
       </div>
+      <!-- RECOMMENDATIONS -->
+      <div class="box">
+        {{#if resume.recommendations}}
+          <h2>Recommendations</h2>
+        {{/if}}
+        {{#each resume.recommendations}}
+          <p><strong>{{author.firstName}} {{author.lastName}}</strong> - {{content}}</p>
+        {{/each}}
+        {{#if_eq user.role "Lecturer"}}
+          <button class="btn btn-primary add-rec-button">Add Recommendation</button>
+          <form action="/resume/{{resume.id}}/recommendations" method="post" class="add-rec-input" style="display: none">
+            <textarea required="required" id="content" name="content" class="form-control add-rec-text" rows="3"></textarea>
+            <br>
+            <input type="submit" value="Submit" class="btn btn-primary add-rec-submit" />
+            <button class="btn btn-warning add-rec-cancel" />Cancel</button>
+          </form>
+        {{/if_eq}}
+      </div>
     </div>
     <div class="col-xs-12 col-sm-5">
       <!-- CONTACT -->
       <div class="box clearfix">
         <h2>Contact</h2>
-        {{#if user.phone}}
+        {{#if resume.phone}}
         <div class="contact-item">
           <div class="icon pull-left text-center"><span class="fa fa-phone fa-fw"></span></div>
-          <div class="title only pull-right">{{user.phone}}</div>
+          <div class="title only pull-right">{{resume.phone}}</div>
         </div>
         {{/if}}
         <div class="contact-item">
           <div class="icon pull-left text-center"><span class="fa fa-envelope fa-fw"></span></div>
-          <div class="title only pull-right">{{user.local.email}}</div>
+          <div class="title only pull-right">{{resume.local.email}}</div>
         </div>
-        {{#if user.twitter}}
+        {{#if resume.twitter}}
         <div class="contact-item">
           <div class="icon pull-left text-center"><span class="fa fa-twitter fa-fw"></span></div>
           <div class="title pull-right">Twitter</div>
-          <div class="description pull-right">{{user.twitter}}</div>
+          <div class="description pull-right">{{resume.twitter}}</div>
         </div>
         {{/if}}
-        {{#if user.facebook}}
+        {{#if resume.facebook}}
         <div class="contact-item">
           <div class="icon pull-left text-center"><span class="fa fa-facebook fa-fw"></span></div>
           <div class="title pull-right">Facebook</div>
-          <div class="description pull-right">{{user.facebook}}</div>
+          <div class="description pull-right">{{resume.facebook}}</div>
         </div>
         {{/if}}
-        {{#if user.skype}}
+        {{#if resume.skype}}
         <div class="contact-item">
           <div class="icon pull-left text-center"><span class="fa fa-skype fa-fw"></span></div>
           <div class="title pull-right">Skype</div>
-          <div class="description pull-right">{{user.skype}}</div>
+          <div class="description pull-right">{{resume.skype}}</div>
         </div>
         {{/if}}
       </div>
@@ -113,7 +131,7 @@
       <div class="box">
         <h2>Languages</h2>
         <div id="language-skills">
-          {{#each user.languages}}
+          {{#each resume.languages}}
           <div class="skill">{{this}} <div class="icons pull-right"><div style="width: 100%;" class="icons-red"></div></div></div>
           {{/each}}
         </div>
@@ -121,10 +139,14 @@
       <!-- HOBBIES -->
       <div class="box">
         <h2>Hobbies</h2>
-        {{#each user.hobbies}}
+        {{#each resume.hobbies}}
         <div class="hobby">{{this}}</div>
         {{/each}}
       </div>
     </div>
   </div>
 </div>
+
+{{#section 'scripts'}}
+  <script src="/js/resume.js"></script>
+{{/section}}

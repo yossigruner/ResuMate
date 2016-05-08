@@ -19,7 +19,11 @@ var userSchema = Schema({
   local: {
     email: String,
     password: String
-  }
+  },
+  recommendations: [{
+    author: { type: Schema.Types.ObjectId, ref: 'User'},
+    content: String
+  }]
 });
 
 userSchema.methods.generateHash = function(password) {

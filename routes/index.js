@@ -8,7 +8,7 @@ module.exports = function(app, passport) {
       if (user.firstName == null || user.firstName == '') {
         res.redirect('/wizard');
       } else {
-        User.findById(user.id).populate('courses').exec(function(err, user) {
+        User.findById(user.id).populate('courses recommendations.author').exec(function(err, user) {
           if (err) {
             console.error(err);
             return res.sendStatus(500);
@@ -23,7 +23,7 @@ module.exports = function(app, passport) {
             return res.redirect('/courses');
           }
           var skills = getStudentSkills(user);
-          res.render('resume', { user: user, skills: skills });
+          res.render('resume', { resume: user, user: user, skills: skills });
         });
       }
     } else {
@@ -33,7 +33,7 @@ module.exports = function(app, passport) {
 
   app.get('/resume/:id', function(req, res, next) {
     var id = req.params.id;
-    User.findById(id).populate('courses').exec(function(err, user) {
+    User.findById(id).populate('courses recommendations.author').exec(function(err, user) {
       if (err) {
         console.error(err);
         return res.sendStatus(500);
@@ -42,7 +42,34 @@ module.exports = function(app, passport) {
         return res.sendStatus(404);
       }
       var skills = getStudentSkills(user);
-      res.render('resume', { user: user, skills: skills, public: true });
+      var pub = true;
+      if (req.user) {
+        if (req.user.role == 'Admin' || req.user.role == 'Lecturer') {
+          pub = false;
+        }
+      }
+      res.render('resume', { user: req.user, skills: skills, public: pub, resume: user });
+    });
+
+  });
+
+  app.post('/resume/:id/recommendations', middlewares.isLecturer, function(req, res, next) {
+    var id = req.params.id;
+    User.findById(id).exec(function(err, user) {
+      if (err) {
+        console.error(err);
+        return res.sendStatus(500);
+      }
+      if (!user) {
+        return res.sendStatus(404);
+      }
+      var recommendation = {
+        author: req.user.id,
+        content: req.body.content
+      };
+      user.recommendations.push(recommendation);
+      user.save();
+      res.redirect('/resume/' + id);
     });
 
   });
@@ -70,7 +97,5 @@ function getStudentSkills(user) {
       }
     }
   }
-  console.log('STUDENT SKILL');
-  console.log(studentSkills);
   return studentSkills;
 }
