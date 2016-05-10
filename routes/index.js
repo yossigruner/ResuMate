@@ -1,4 +1,5 @@
 var User = require('../models/user');
+var gravatar = require('gravatar');
 var middlewares = require('../utilities/middlewares')
 
 module.exports = function(app, passport) {
@@ -23,7 +24,8 @@ module.exports = function(app, passport) {
             return res.redirect('/courses');
           }
           var skills = getStudentSkills(user);
-          res.render('resume', { resume: user, user: user, skills: skills });
+          var gravatarUrl = gravatar.url(user.local.email,{protocol: 'http', s: '250'});
+          res.render('resume', { resume: user, user: user, skills: skills, gravatarUrl: gravatarUrl });
         });
       }
     } else {
@@ -48,7 +50,9 @@ module.exports = function(app, passport) {
           pub = false;
         }
       }
-      res.render('resume', { user: req.user, skills: skills, public: pub, resume: user });
+
+      var gravatarUrl = gravatar.url(user.local.email,{protocol: 'http', s: '250'});
+      res.render('resume', { user: req.user, skills: skills, public: pub, resume: user, gravatarUrl: gravatarUrl });
     });
 
   });
