@@ -24,7 +24,7 @@ module.exports = function(app, passport) {
             return res.redirect('/courses');
           }
           var skills = getStudentSkills(user);
-          var gravatarUrl = gravatar.url(user.local.email,{protocol: 'http', s: '250'});
+          var gravatarUrl = gravatar.url(user.local.email,{protocol: 'https', s: '250'});
           res.render('resume', { resume: user, user: user, skills: skills, gravatarUrl: gravatarUrl });
         });
       }
@@ -51,7 +51,7 @@ module.exports = function(app, passport) {
         }
       }
 
-      var gravatarUrl = gravatar.url(user.local.email,{protocol: 'http', s: '250'});
+      var gravatarUrl = gravatar.url(user.local.email,{protocol: 'https', s: '250'});
       res.render('resume', { user: req.user, skills: skills, public: pub, resume: user, gravatarUrl: gravatarUrl });
     });
 
