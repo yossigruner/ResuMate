@@ -26,22 +26,22 @@
         </div>
     </div>
 </div>
-<form role="form" method="post">
+<form role="form" method="post" novalidate>
     <div class="row setup-content" id="step-1">
         <div class="col-xs-12">
             <div class="col-md-12">
                 <h3> Step 1</h3>
                 <div class="form-group">
                     <label class="control-label">First Name</label>
-                    <input id="first-name" name="first-name" maxlength="100" type="text" required="required" class="form-control" placeholder="Enter First Name"  />
+                    <input id="first-name" name="first-name" maxlength="100" type="text" required="required" class="form-control" placeholder="Enter First Name" value="{{resume.firstName}}" />
                 </div>
                 <div class="form-group">
                     <label class="control-label">Last Name</label>
-                    <input id="last-name" name="last-name" maxlength="100" type="text" required="required" class="form-control" placeholder="Enter Last Name" />
+                    <input id="last-name" name="last-name" maxlength="100" type="text" required="required" class="form-control" placeholder="Enter Last Name" value="{{resume.lastName}}" />
                 </div>
                 <div class="form-group">
                     <label class="control-label">About Me</label>
-                    <textarea rows="5" name="about-me" maxlength="3000" type="text" required="required" class="form-control" placeholder="Tell us and the world about yourself..."></textarea>
+                    <textarea rows="5" name="about-me" maxlength="3000" type="text" required="required" class="form-control" placeholder="Tell us and the world about yourself...">{{resume.aboutMe}}</textarea>
                 </div>
                 <button class="btn btn-primary nextBtn btn-lg pull-right" type="button" >Next</button>
             </div>
@@ -53,122 +53,70 @@
                 <h3> Step 2</h3>
                 <div class="form-group">
                     <label class="control-label">Educational Milestones</label>
-                    <div class="row">
-                      <div class="col-xs-3">
-                        <select name="milestone-year" class="form-control">
-                          <option>2016</option>
-                          <option>2015</option>
-                          <option>2014</option>
-                          <option>2013</option>
-                          <option>2012</option>
-                          <option>2011</option>
-                        </select>
-                      </div>
-                      <div class="col-xs-3">
-                        <input id="milestone-name" name="milestone-name" maxlength="100" type="text" class="form-control" placeholder="Name" />
-                      </div>
-                      <div class="col-xs-6">
-                        <input id="milestone-description" name="milestone-description" maxlength="100" type="text" class="form-control" placeholder="Description" />
-                      </div>
+                    <div id="milestones">
+                      {{#each resume.milestones}}
+                        <div class="row milestone">
+                          <div class="col-xs-3">
+                            <select name="milestone-year" class="form-control">
+                              <option selected>{{this.year}}</option>
+                              <option>2016</option>
+                              <option>2015</option>
+                              <option>2014</option>
+                              <option>2013</option>
+                              <option>2012</option>
+                              <option>2011</option>
+                            </select>
+                          </div>
+                          <div class="col-xs-3">
+                            <input id="milestone-name" name="milestone-name" maxlength="100" type="text" class="form-control" placeholder="Name" value="{{this.name}}"/>
+                          </div>
+                          <div class="col-xs-5">
+                            <input id="milestone-description" name="milestone-description" maxlength="100" type="text" class="form-control" placeholder="Description" value="{{this.description}}"/>
+                          </div>
+                          <div class="col-xs-1">
+                            <button class="btn btn-default delete-milestone">X</button>
+                          </div>
+                        </div>
+                      {{/each}}
                     </div>
                     <div class="row">
-                      <div class="col-xs-3">
-                        <select name="milestone-year"class="form-control">
-                          <option>2016</option>
-                          <option>2015</option>
-                          <option>2014</option>
-                          <option>2013</option>
-                          <option>2012</option>
-                          <option>2011</option>
-                        </select>
-                      </div>
-                      <div class="col-xs-3">
-                        <input id="milestone-name" name="milestone-name" maxlength="100" type="text" class="form-control" placeholder="Name" />
-                      </div>
-                      <div class="col-xs-6">
-                        <input id="milestone-description" name="milestone-description" maxlength="100" type="text" class="form-control" placeholder="Description" />
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-xs-3">
-                        <select name="milestone-year" class="form-control" >
-                          <option>2016</option>
-                          <option>2015</option>
-                          <option>2014</option>
-                          <option>2013</option>
-                          <option>2012</option>
-                          <option>2011</option>
-                        </select>
-                      </div>
-                      <div class="col-xs-3">
-                        <input id="milestone-name" name="milestone-name" maxlength="100" type="text" class="form-control" placeholder="Name" />
-                      </div>
-                      <div class="col-xs-6">
-                        <input id="milestone-description" name="milestone-description" maxlength="100" type="text" class="form-control" placeholder="Description" />
+                      <div class="col-xs-12">
+                        <button class="btn btn-success" id="add-milestone">Add</button>
                       </div>
                     </div>
                     <label class="control-label">Experience</label>
-                    <div class="row">
-                      <div class="col-xs-3">
-                        <select name="experience-year" class="form-control" name="">
-                          <option>2016</option>
-                          <option>2015</option>
-                          <option>2014</option>
-                          <option>2013</option>
-                          <option>2012</option>
-                          <option>2011</option>
-                        </select>
-                      </div>
-                      <div class="col-xs-3">
-                        <input id="experience-company" name="experience-company" maxlength="100" type="text" class="form-control" placeholder="Company" />
-                      </div>
-                      <div class="col-xs-3">
-                        <input id="experience-title" name="experience-title" maxlength="100" type="text" class="form-control" placeholder="Title" />
-                      </div>
-                      <div class="col-xs-3">
-                        <input id="experience-description" name="experience-description" maxlength="100" type="text" class="form-control" placeholder="Description" />
-                      </div>
+                    <div id="experiences">
+                      {{#each resume.experience}}
+                        <div class="row experience">
+                          <div class="col-xs-3">
+                            <select name="experience-year" class="form-control" name="">
+                              <option selected>{{this.year}}</option>
+                              <option>2016</option>
+                              <option>2015</option>
+                              <option>2014</option>
+                              <option>2013</option>
+                              <option>2012</option>
+                              <option>2011</option>
+                            </select>
+                          </div>
+                          <div class="col-xs-2">
+                            <input id="experience-company" name="experience-company" maxlength="100" type="text" class="form-control" placeholder="Company" value="{{this.company}}"/>
+                          </div>
+                          <div class="col-xs-3">
+                            <input id="experience-title" name="experience-title" maxlength="100" type="text" class="form-control" placeholder="Title" value="{{this.title}}"/>
+                          </div>
+                          <div class="col-xs-3">
+                            <input id="experience-description" name="experience-description" maxlength="100" type="text" class="form-control" placeholder="Description" value="{{this.description}}"/>
+                          </div>
+                          <div class="col-xs-1">
+                            <button class="btn btn-default delete-experience">X</button>
+                          </div>
+                        </div>
+                      {{/each}}
                     </div>
                     <div class="row">
-                      <div class="col-xs-3">
-                        <select name="experience-year" class="form-control" name="">
-                          <option>2016</option>
-                          <option>2015</option>
-                          <option>2014</option>
-                          <option>2013</option>
-                          <option>2012</option>
-                          <option>2011</option>
-                        </select>
-                      </div>
-                      <div class="col-xs-3">
-                        <input id="experience-company" name="experience-company" maxlength="100" type="text" class="form-control" placeholder="Company" />
-                      </div>
-                      <div class="col-xs-3">
-                        <input id="experience-title" name="experience-title" maxlength="100" type="text" class="form-control" placeholder="Title" />
-                      </div>
-                      <div class="col-xs-3">
-                        <input id="experience-description" name="experience-description" maxlength="100" type="text" class="form-control" placeholder="Description" />
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-xs-3">
-                        <select name="experience-year" class="form-control" name="">
-                          <option>2016</option>
-                          <option>2015</option>
-                          <option>2014</option>
-                          <option>2013</option>
-                          <option>2012</option>
-                          <option>2011</option>
-                        </select>
-                      </div>
-                      <div class="col-xs-3">
-                        <input id="experience-company" name="experience-company" maxlength="100" type="text" class="form-control" placeholder="Company" />
-                      </div>
-                      <div class="col-xs-3">
-                        <input id="experience-title" name="experience-title" maxlength="100" type="text" class="form-control" placeholder="Title" />
-                      </div>
-                      <div class="col-xs-3">
-                        <input id="experience-description" name="experience-description" maxlength="100" type="text" class="form-control" placeholder="Description" />
+                      <div class="col-xs-12">
+                        <button class="btn btn-success" id="add-experience">Add</button>
                       </div>
                     </div>
                 </div>
@@ -183,11 +131,11 @@
                 <h3> Step 3</h3>
                 <div class="form-group">
                     <label class="control-label">Hobbies</label>
-                    <input id="hobbies" name="hobbies" maxlength="200" type="text" required="required" class="form-control" placeholder="Hobbies seperated by commas"  />
+                    <input id="hobbies" name="hobbies" maxlength="200" type="text" required="required" class="form-control" placeholder="Hobbies seperated by commas" value="{{hobbies}}" />
                 </div>
                 <div class="form-group">
                     <label class="control-label">Languages</label>
-                    <input id="languages" name="languages" maxlength="200" type="text" required="required" class="form-control" placeholder="Languages seperated by commas"  />
+                    <input id="languages" name="languages" maxlength="200" type="text" required="required" class="form-control" placeholder="Languages seperated by commas" value="{{languages}}" />
                 </div>
                 <button class="btn btn-default prevBtn btn-lg pull-left" type="button" >Prev</button>
                 <button class="btn btn-primary nextBtn btn-lg pull-right" type="button" >Next</button>
@@ -200,19 +148,19 @@
                 <h3> Step 4</h3>
                 <div class="form-group">
                     <label class="control-label">Phone</label>
-                    <input id="phone" name="phone" maxlength="200" type="text" class="form-control" placeholder="Phone"  />
+                    <input id="phone" name="phone" maxlength="200" type="text" class="form-control" placeholder="Phone"  value="{{resume.phone}}"/>
                 </div>
                 <div class="form-group">
                     <label class="control-label">Twitter</label>
-                    <input id="twitter" name="twitter" maxlength="200" type="text" class="form-control" placeholder="Twitter"  />
+                    <input id="twitter" name="twitter" maxlength="200" type="text" class="form-control" placeholder="Twitter" value="{{resume.twitter}}" />
                 </div>
                 <div class="form-group">
                     <label class="control-label">Facebook</label>
-                    <input id="facebook" name="facebook" maxlength="200" type="text" class="form-control" placeholder="Facebook"  />
+                    <input id="facebook" name="facebook" maxlength="200" type="text" class="form-control" placeholder="Facebook" value="{{resume.facebook}}" />
                 </div>
                 <div class="form-group">
                     <label class="control-label">Skype</label>
-                    <input id="skype" name="skype" maxlength="200" type="text" class="form-control" placeholder="Skype"  />
+                    <input id="skype" name="skype" maxlength="200" type="text" class="form-control" placeholder="Skype" value="{{resume.skype}}" />
                 </div>
                 <button class="btn btn-default prevBtn btn-lg pull-left" type="button" >Prev</button>
                 <button class="btn btn-primary nextBtn btn-lg pull-right" type="button" >Next</button>

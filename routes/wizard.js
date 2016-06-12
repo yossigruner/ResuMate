@@ -3,7 +3,15 @@ var middlewares = require('../utilities/middlewares')
 
 module.exports = function(app, passport) {
   app.get('/wizard', middlewares.isLoggedIn, function(req, res) {
-    res.render('wizard', {user: req.user});
+    console.log(req.user);
+    var hobbies, languages;
+    if (req.user.hobbies) {
+      hobbies = req.user.hobbies.join();
+    }
+    if (req.user.languages) {
+      languages = req.user.languages.join();
+    }
+    res.render('wizard', {user: req.user, resume: req.user, hobbies: hobbies, languages: languages});
   });
 
   app.post('/wizard', middlewares.isLoggedIn, function(req, res) {
@@ -32,7 +40,8 @@ function parseBody(body, user) {
   user.lastName = body['last-name'];
   user.aboutMe = body['about-me'];
   user.milestones = [];
-  for (var i=0;i<3;i++) {
+  var milestoneCount = body['milestone-name'].length;
+  for (var i=0;i<milestoneCount;i++) {
     if (body['milestone-name'][i] != null && body['milestone-name'][i] != '') {
       var milestone = {
         year: body['milestone-year'][i],
@@ -43,7 +52,8 @@ function parseBody(body, user) {
     }
   }
   user.experience = [];
-  for (var i=0;i<3;i++) {
+  var experienceCount = body['experience-company'].length;
+  for (var i=0;i<experienceCount;i++) {
     if (body['experience-company'][i] != null && body['experience-company'][i] != '') {
       var experience = {
         year: body['experience-year'][i],

@@ -50,4 +50,84 @@ $(document).ready(function () {
     });
 
     $('div.setup-panel div a.btn-primary').trigger('click');
+
+    addDeletionListeners();
+
+    $('#add-milestone').click(function(e) {
+      $('#milestones').append(milestoneTemplate);
+      addDeletionListeners();
+      return false;
+    });
+
+    $('#add-experience').click(function(e) {
+      $('#experiences').append(experienceTemplate);
+      addDeletionListeners();
+      return false;
+    });
+
+
 });
+
+function addDeletionListeners() {
+  $('.delete-experience').click(function(e) {
+    var element = e.target;
+    $(element).closest('.experience').remove();
+    return false;
+  });
+
+  $('.delete-milestone').click(function(e) {
+    var element = e.target;
+    $(element).closest('.milestone').remove();
+    return false;
+  });
+}
+
+
+var milestoneTemplate = '<div class="row milestone">\
+                      <div class="col-xs-3">\
+                        <select name="milestone-year" class="form-control">\
+                          <option>2016</option>\
+                          <option>2015</option>\
+                          <option>2014</option>\
+                          <option>2013</option>\
+                          <option>2012</option>\
+                          <option>2011</option>\
+                        </select>\
+                      </div>\
+                      <div class="col-xs-3">\
+                        <input id="milestone-name" name="milestone-name" maxlength="100" type="text" class="form-control" placeholder="Name" />\
+                      </div>\
+                      <div class="col-xs-5">\
+                        <input id="milestone-description" name="milestone-description" maxlength="100" type="text" class="form-control" placeholder="Description" />\
+                      </div>\
+                      <div class="col-xs-1">\
+                        <button class="btn btn-default delete-milestone">X</button>\
+                      </div>\
+                    </div>\
+';
+
+var experienceTemplate = '<div class="row experience">\
+                        <div class="col-xs-3">\
+                          <select name="experience-year" class="form-control" name="">\
+                            <option>2016</option>\
+                            <option>2015</option>\
+                            <option>2014</option>\
+                            <option>2013</option>\
+                            <option>2012</option>\
+                            <option>2011</option>\
+                          </select>\
+                        </div>\
+                        <div class="col-xs-2">\
+                          <input id="experience-company" name="experience-company" maxlength="100" type="text" class="form-control" placeholder="Company" />\
+                        </div>\
+                        <div class="col-xs-3">\
+                          <input id="experience-title" name="experience-title" maxlength="100" type="text" class="form-control" placeholder="Title" />\
+                        </div>\
+                        <div class="col-xs-3">\
+                          <input id="experience-description" name="experience-description" maxlength="100" type="text" class="form-control" placeholder="Description" />\
+                        </div>\
+                        <div class="col-xs-1">\
+                          <button class="btn btn-default delete-experience">X</button>\
+                        </div>\
+                      </div>\
+                      ';

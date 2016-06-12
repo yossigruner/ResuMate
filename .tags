@@ -1,0 +1,5 @@
+User	/Users/oron/Development/ResuMate/routes/wizard.js	/^var User = require('..\/models\/user');$/;"	variable	line:1
+exports	/Users/oron/Development/ResuMate/routes/wizard.js	/^module.exports = function(app, passport) {$/;"	function	line:4
+parseBody	/Users/oron/Development/ResuMate/routes/wizard.js	/^function parseBody(body, user) {$/;"	function	line:38
+var.milestone.year	/Users/oron/Development/ResuMate/routes/wizard.js	/^      var milestone = {$/;"	property	line:46
+var.experience.year	/Users/oron/Development/ResuMate/routes/wizard.js	/^      var experience = {$/;"	property	line:58
